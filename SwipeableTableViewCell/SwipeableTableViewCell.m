@@ -5,10 +5,6 @@ CGFloat const kSwipeableTableViewCellMaxCloseMilliseconds = 300;
 CGFloat const kSwipeableTableViewCellOpenVelocityThreshold = 0.6;
 
 @interface SwipeableTableViewCell ()
-{
-    UISwipeGestureRecognizer * swipeGrLeft;
-    UISwipeGestureRecognizer * swipeGrRight;
-}
 
 @property (nonatomic) NSArray *buttonViews;
 
@@ -144,9 +140,7 @@ CGFloat const kSwipeableTableViewCellOpenVelocityThreshold = 0.6;
     [self.contentView addSubview:scrollView];
     self.scrollView = scrollView;
     self.scrollView.customDelegate = self;
-    
-    //self.scrollView.userInteractionEnabled = NO;
-    
+
     // Create the containers which will contain buttons on the left and right sides.
     self.buttonViews = @[[self createButtonsView], [self createButtonsView]];
     
