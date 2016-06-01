@@ -84,11 +84,7 @@
     // MARK: Public methods
     
     func close(complete:(()->Void)?) {
-        UIView.animateWithDuration(0.25, delay: 0, options: [.BeginFromCurrentState], animations: {
-            self.scrollView.contentOffset = CGPointZero
-        }) { _ in
-            complete?()
-        }
+        self.scrollView.setContentOffset(CGPointZero, animated: true)
     }
     
     
