@@ -1,6 +1,12 @@
 SwipeableTableViewCell
 ======================
 
+What's diffrent in this fork?
+  * It's rewritten in Swift
+  * Wraps `UIButton` with `SwipeRowAction`
+  * Allow removing button from cell
+  * Works with xib
+ 
 This is a simple class that allows swiping left and right to reveal
 buttons on either side of a table view cell. This repository contains
 the class and a demo of the class. Simply open up the project and run
