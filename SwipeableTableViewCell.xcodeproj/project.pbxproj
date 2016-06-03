@@ -17,6 +17,7 @@
 		FA57F0CB1A7573F600899C6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA57F0C91A7573F600899C6A /* Main.storyboard */; };
 		FA57F0CD1A7573F600899C6A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA57F0CC1A7573F600899C6A /* Images.xcassets */; };
 		FA57F0D01A7573F600899C6A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA57F0CE1A7573F600899C6A /* LaunchScreen.xib */; };
+		FB13EC981D00B86100F2AC69 /* SwipeableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13EC971D00B86100F2AC69 /* SwipeableScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		FA57F0CA1A7573F600899C6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA57F0CC1A7573F600899C6A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FA57F0CF1A7573F600899C6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		FB13EC971D00B86100F2AC69 /* SwipeableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeableScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		FA57F0BE1A7573F600899C6A /* SwipeableTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				FB13EC961D00B86100F2AC69 /* CustomClasses */,
 				BEACD6951CFEDCD800FF735B /* Extensions */,
 				BEACD68E1CFEDC5400FF735B /* SwipeableTableViewCell */,
 				FA57F0C31A7573F600899C6A /* AppDelegate.h */,
@@ -103,6 +106,14 @@
 				FA57F0C11A7573F600899C6A /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FB13EC961D00B86100F2AC69 /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				FB13EC971D00B86100F2AC69 /* SwipeableScrollView.swift */,
+			);
+			path = CustomClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +189,7 @@
 			files = (
 				BEACD6921CFEDC5400FF735B /* SwipeableButton.swift in Sources */,
 				FA57F0C51A7573F600899C6A /* AppDelegate.m in Sources */,
+				FB13EC981D00B86100F2AC69 /* SwipeableScrollView.swift in Sources */,
 				BEACD6A01CFEE22E00FF735B /* TableViewController.swift in Sources */,
 				BEACD6931CFEDC5400FF735B /* SwipeableViewCell.swift in Sources */,
 				FA57F0C21A7573F600899C6A /* main.m in Sources */,

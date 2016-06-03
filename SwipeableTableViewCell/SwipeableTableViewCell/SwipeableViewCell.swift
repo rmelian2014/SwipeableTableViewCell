@@ -20,7 +20,7 @@
     private let MaxCloseMilliseconds:CGFloat = 300
     
     var scrollViewContentView:UIView = UIView()
-    var scrollView:UIScrollView!
+    var scrollView:SwipeableScrollView!
     var leftInset:CGFloat {
         let view = self.buttonViews[SwipeableTableViewCellSide.Left.rawValue]
         return view.bounds.width
@@ -54,8 +54,8 @@
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
+        //TODO you must configure cell for selected state  uncommenting this line cause
+        //super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
     
@@ -113,7 +113,7 @@
     
     private func setup() {
         // Create the scroll view which enables the horizontal swiping.
-        let scrollView = UIScrollView(frame: self.contentView.bounds)
+        let scrollView = SwipeableScrollView(frame: self.contentView.bounds)
         scrollView.autoresizingMask = [.FlexibleWidth,.FlexibleHeight]
         
         scrollView.delegate = self
@@ -121,6 +121,7 @@
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         self.scrollView = scrollView
+        self.scrollView.customDelegate = self;
         self.addSubview(scrollView)
         
         var contentBouds = self.contentView.bounds.size
