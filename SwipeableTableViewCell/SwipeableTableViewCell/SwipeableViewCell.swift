@@ -18,6 +18,7 @@
     private static let CloseEvent:String = "SwipeableTableViewCellClose"
     private let OpenVelocityThreshold:CGFloat = 0.6;
     private let MaxCloseMilliseconds:CGFloat = 300
+    private var tempCloseComplete:((Void)->(Void))?
     
     var scrollViewContentView:UIView = UIView()
     var scrollView:SwipeableScrollView!
@@ -43,8 +44,6 @@
     }
     
     
-    
-    
     // MARK: Lifecycle methods
     
     override func awakeFromNib() {
@@ -55,7 +54,9 @@
     
     override func setSelected(selected: Bool, animated: Bool) {
         //TODO you must configure cell for selected state  uncommenting this line cause
+
         //super.setSelected(selected, animated: animated)
+        
         // Configure the view for the selected state
     }
     
@@ -84,7 +85,15 @@
     // MARK: Public methods
     
     func close(complete:(()->Void)?) {
+        guard self.scrollView.contentOffset != CGPointZero else {
+            complete?()
+            return
+        }
         self.scrollView.setContentOffset(CGPointZero, animated: true)
+        if let complete = complete {
+            tempCloseComplete = complete
+            NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: #selector(handleCloseComplete(_:)), userInfo: nil, repeats: false)
+        }
     }
     
     
@@ -106,6 +115,13 @@
     
     // MARK: Private func
     
+    @objc
+    private func handleCloseComplete(timer:NSTimer) {
+        timer.invalidate()
+        tempCloseComplete!()
+        tempCloseComplete = nil
+    }
+    
     private func updateScrollContentInset(){
         // Update the scrollable areas outside the scroll view to fit the buttons.
         self.scrollView.contentInset = UIEdgeInsetsMake(0, self.leftInset, 0, self.rightInset)
@@ -121,7 +137,7 @@
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         self.scrollView = scrollView
-        self.scrollView.customDelegate = self;
+        self.scrollView.customDelegate = self
         self.addSubview(scrollView)
         
         var contentBouds = self.contentView.bounds.size
@@ -162,11 +178,10 @@
     }
     
     private func setupActions(actions:[SwipeRowAction]?,forSide side:SwipeableTableViewCellSide){
-        self.clearButtonsOnSide(side)
         guard let actions = actions else {
             return
         }
-        
+        self.clearButtonsOnSide(side)
         for a in actions{
             let button = createButtonWithWidth(a.width, onSide: side)
             button.onTouchUpInside = a.action
@@ -226,6 +241,8 @@
     // MARK: UIScrollViewDelegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        setHighlighted(false, animated: false)
+        
         if ((self.leftInset == 0 && scrollView.contentOffset.x < 0) || (self.rightInset == 0 && scrollView.contentOffset.x > 0)) {
             scrollView.contentOffset = CGPointZero
         }
