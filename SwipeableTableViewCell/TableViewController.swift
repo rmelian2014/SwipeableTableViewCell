@@ -34,8 +34,9 @@ class TableViewController: UITableViewController {
     
     // MARK: Private
     
-    private func tickle() {
-        let alert = UIAlertController(title: "Tee-hee", message: "Stop it!", preferredStyle: .Alert)
+    private func showAlertWithTitle(title:String,msg:String) {
+//        let alert = UIAlertController(title: "Tee-hee", message: "Stop it!", preferredStyle: .Alert)
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Okay 😀", style: .Default,handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -61,14 +62,19 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier, forIndexPath: indexPath) as! SwipeableTableViewCell
         
         let tickleAction = SwipeRowAction(title: "Tickle", image: nil, backgroundColor: blue, width: 100) { _ in
-            self.tickle()
+            cell.close(nil)
+            self.showAlertWithTitle("Tee-hee",msg:"Stop it!")
         }
         
         let moreAction = SwipeRowAction(title: "More", image: nil, backgroundColor: UIColor.lightGrayColor(), width: 80) { _ in
+            cell.close(nil)
+            self.showAlertWithTitle("You want MORE?!",msg:"no")
             print("More button tapped")
         }
         
         let deleteAction = SwipeRowAction(title: nil, image: UIImage(named: "trash"), backgroundColor: UIColor.redColor(), width: 80) { _ in
+            cell.close(nil)
+            self.showAlertWithTitle("NOOoo",msg:"don't delete me")
             print("Delete button tapped")
         }
         
@@ -80,7 +86,9 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.showAlertWithTitle("I've been selected!", msg: "I'm the chosen one!")
         print("selected \(indexPath.row)")
+        
     }
  
 
