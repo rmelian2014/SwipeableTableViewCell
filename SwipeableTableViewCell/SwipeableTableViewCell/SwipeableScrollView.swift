@@ -10,26 +10,17 @@ import UIKit
 
 class SwipeableScrollView: UIScrollView {
 
-    var customDelegate : UIResponder?;
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
+    var customDelegate : UIResponder?
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         customDelegate?.touchesBegan(touches, withEvent: event)
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-
             customDelegate?.touchesEnded(touches, withEvent: event)
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-
             customDelegate?.touchesMoved(touches, withEvent: event)
     }
 }
